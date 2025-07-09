@@ -1,0 +1,205 @@
+{
+    "projectId": "68538057001df6e216d1",
+    "endpoint": "https://fra.cloud.appwrite.io/v1",
+    "projectName": "Tecno Salud",
+    "settings": {
+        "services": {
+            "account": true,
+            "avatars": true,
+            "databases": true,
+            "locale": true,
+            "health": true,
+            "storage": true,
+            "teams": true,
+            "users": true,
+            "sites": true,
+            "functions": true,
+            "graphql": true,
+            "messaging": true
+        },
+        "auth": {
+            "methods": {
+                "jwt": true,
+                "phone": true,
+                "invites": true,
+                "anonymous": true,
+                "email-otp": true,
+                "magic-url": true,
+                "email-password": true
+            },
+            "security": {
+                "duration": 31536000,
+                "limit": 0,
+                "sessionsLimit": 10,
+                "passwordHistory": 0,
+                "passwordDictionary": false,
+                "personalDataCheck": false,
+                "sessionAlerts": false,
+                "mockNumbers": []
+            }
+        }
+    },
+    "databases": [
+        {
+            "$id": "685380e9000e5925c637",
+            "name": "data",
+            "enabled": true
+        }
+    ],
+    "teams": [
+        {
+            "$id": "6853831a0015de59f5be",
+            "name": "clientes"
+        },
+        {
+            "$id": "685383210032d1157832",
+            "name": "empleados"
+        }
+    ],
+    "collections": [
+        {
+            "$id": "686eeb17000d5f03c93b",
+            "$permissions": [],
+            "databaseId": "685380e9000e5925c637",
+            "name": "users",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "role",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "elements": [
+                        "patient",
+                        "doctor",
+                        "admin"
+                    ],
+                    "format": "enum",
+                    "default": null
+                },
+                { "key": "full_name", "type": "string", "size": 255, "required": true },
+                { "key": "dni", "type": "string", "size": 15, "required": false },
+                { "key": "birth_date", "type": "datetime", "required": false },
+                { "key": "phone", "type": "string", "size": 20, "required": false },
+                { "key": "address", "type": "string", "size": 255, "required": false },
+                { "key": "specialty", "type": "string", "size": 255, "required": false },
+                { "key": "photo_url", "type": "string", "size": 1024, "required": false }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "686eeb2b0001cb367c34",
+            "$permissions": [],
+            "databaseId": "685380e9000e5925c637",
+            "name": "appointments",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                {
+                    "key": "doctor_id",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "patient_id",
+                    "type": "string",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "datetime",
+                    "type": "datetime",
+                    "required": true,
+                    "array": false,
+                    "format": "",
+                    "default": null
+                },
+                {
+                    "key": "reason",
+                    "type": "string",
+                    "required": false,
+                    "array": false,
+                    "size": 1024,
+                    "default": null
+                },
+                { "key": "status", "type": "string", "required": true, "array": false, "elements": ["pending", "confirmed", "cancelled", "completed"], "format": "enum", "default": null },
+                { "key": "notes", "type": "string", "size": 1024, "required": false, "array": false, "default": null }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "686eeb3800065f11e647",
+            "$permissions": [],
+            "databaseId": "685380e9000e5925c637",
+            "name": "medical_records",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                { "key": "patient_id", "type": "string", "size": 255, "required": false, "array": false, "default": null },
+                { "key": "doctor_id", "type": "string", "size": 255, "required": false, "array": false, "default": null },
+                { "key": "appointment_id", "type": "string", "size": 255, "required": false, "array": false, "default": null },
+                { "key": "symptoms", "type": "string", "size": 1024, "required": false, "array": false, "default": null },
+                { "key": "diagnosis", "type": "string", "size": 1024, "required": false, "array": false, "default": null },
+                { "key": "treatment", "type": "string", "size": 1024, "required": false, "array": false, "default": null },
+                { "key": "notes", "type": "string", "size": 1024, "required": false, "array": false, "default": null },
+                { "key": "created_at", "type": "datetime", "required": false, "array": false, "default": null }
+                ],
+            "indexes": []
+        },
+        {
+            "$id": "686eeb4600239359c96c",
+            "$permissions": [],
+            "databaseId": "685380e9000e5925c637",
+            "name": "documents",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+            { "key": "patient_id", "type": "string", "size": 255, "required": false, "array": false, "default": null },
+            { "key": "title", "type": "string", "size": 255, "required": false, "array": false, "default": null },
+            { "key": "file_url", "type": "string", "size": 1024, "required": false, "array": false, "default": null },
+            { "key": "type", "type": "string", "required": true, "array": false, "elements": ["exam", "prescription", "other"], "format": "enum", "default": null },
+            { "key": "uploaded_at", "type": "datetime", "required": false, "array": false, "default": null }
+            ],
+            "indexes": []
+        },
+        {
+            "$id": "686eebb2003a85d617cf",
+            "$permissions": [],
+            "databaseId": "685380e9000e5925c637",
+            "name": "invoices",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                { "key": "patient_id", "type": "string", "size": 255, "required": false, "array": false, "default": null },
+                { "key": "appointment_id", "type": "string", "size": 255, "required": false, "array": false, "default": null },
+                { "key": "amount", "type": "string", "required": false, "size": 255, "array": false, "default": null },
+                { "key": "status", "type": "string", "required": true, "array": false, "elements": ["pending", "paid", "rejected"], "format": "enum", "default": null },
+                { "key": "issued_at", "type": "datetime", "required": false, "array": false, "default": null },
+                { "key": "sunat_code", "type": "string", "size": 255, "required": false, "array": false, "default": null }
+                ],
+            "indexes": []
+        },
+        {
+            "$id": "686eebe2001d1b5f26d8",
+            "$permissions": [],
+            "databaseId": "685380e9000e5925c637",
+            "name": "notifications",
+            "enabled": true,
+            "documentSecurity": false,
+            "attributes": [
+                { "key": "user_id", "type": "string", "size": 255, "required": false, "array": false, "default": null },
+                { "key": "message", "type": "string", "size": 1024, "required": false, "array": false, "default": null },
+                { "key": "type", "type": "string", "required": true, "array": false, "elements": ["reminder", "lab_result", "system"], "format": "enum", "default": null },
+                { "key": "read", "type": "boolean", "required": false, "array": false, "default": null },
+                { "key": "sent_at", "type": "datetime", "required": false, "array": false, "default": null }
+                ],
+            "indexes": []
+        }
+    ]
+}
