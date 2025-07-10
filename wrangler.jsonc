@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "noisy-field-95d8",
+	"name": "tecno-salud",
 	"main": "./.output/server/index.mjs",
 	"compatibility_date": "2025-07-09",
 	"assets": {
