@@ -1,4 +1,5 @@
 <template>
+  <AppNavbar />
   <NuxtPage />
 </template>
 

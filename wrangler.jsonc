@@ -13,7 +13,12 @@
 	},
 	"observability": {
 		"enabled": true
-	}
+	},
+	"vars": {
+		"NUXT_PUBLIC_APPWRITE_PROJECT_ID": "68538057001df6e216d1",
+		"NUXT_PUBLIC_APPWRITE_ENDPOINT": "https://fra.cloud.appwrite.io/v1",
+		"NUXT_PUBLIC_APPWRITE_PLATFORM": "web"
+		}
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
