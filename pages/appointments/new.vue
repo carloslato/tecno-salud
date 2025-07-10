@@ -75,7 +75,7 @@ const handleScheduleAppointment = async () => {
       date: date.value,
       time: time.value,
       doctorName: doctorName.value,
-      patientId: currentUser.$id,
+      patient_id: currentUser.$id,
       patientName: currentUser.name || currentUser.email, // Usar el nombre del usuario o email
       status: 'scheduled', // Estado inicial de la cita
     };
