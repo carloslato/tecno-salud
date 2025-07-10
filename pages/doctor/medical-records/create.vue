@@ -86,12 +86,12 @@ const handleSaveMedicalRecord = async () => {
     }
 
     const recordData = {
-      patientId: patientId.value,
-      date: date.value,
+      patient_id: patientId.value,
+      created_at: date.value, // Usar created_at en lugar de date
       diagnosis: diagnosis.value,
       treatment: treatment.value,
-      doctorId: currentUser.$id,
-      doctorName: currentUser.name || currentUser.email,
+      doctor_id: currentUser.$id,
+      // doctor_name: currentUser.full_name || currentUser.email, // Si se añade al esquema
     };
     await createMedicalRecord(recordData);
     alert('Historia médica guardada exitosamente.');

@@ -88,12 +88,12 @@ const handleUploadDocument = async () => {
     }
 
     const metadata = {
-      patientId: patientId.value,
+      patient_id: patientId.value,
       name: documentName.value,
       type: documentType.value,
       date: new Date().toISOString().split('T')[0],
-      uploadedBy: currentUser.$id,
-      uploadedByName: currentUser.name || currentUser.email,
+      uploaded_by: currentUser.$id,
+      uploaded_by_name: currentUser.name || currentUser.email,
     };
 
     await uploadExamDocument(selectedFile.value, metadata);

@@ -72,12 +72,12 @@ const handleCreateInvoice = async () => {
     }
 
     const invoiceData = {
-      patientId: patientId.value,
+      patient_id: patientId.value,
       amount: parseFloat(amount.value),
       description: description.value,
       date: new Date().toISOString().split('T')[0],
-      issuedBy: currentUser.$id,
-      issuedByName: currentUser.name || currentUser.email,
+      issued_by: currentUser.$id,
+      issued_by_name: currentUser.name || currentUser.email,
       status: 'pending', // o 'paid', 'due', etc.
     };
     await createInvoice(invoiceData);

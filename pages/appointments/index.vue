@@ -9,9 +9,8 @@
             class="bg-white shadow overflow-hidden rounded-md px-6 py-4">
           <div class="flex justify-between items-center">
             <div>
-              <p class="text-lg font-medium text-gray-900">Fecha: {{ new Date(appointment.date).toLocaleDateString() }}</p>
-              <p class="text-sm text-gray-500">Hora: {{ appointment.time }}</p>
-              <p class="text-sm text-gray-500">Doctor: {{ appointment.doctorName }}</p>
+              <p class="text-lg font-medium text-gray-900">Fecha y Hora: {{ new Date(appointment.datetime).toLocaleString() }}</p>
+              <p class="text-sm text-gray-500">Doctor ID: {{ appointment.doctor_id }}</p>
               <p class="text-sm text-gray-500">Estado: {{ appointment.status }}</p>
             </div>
             <button @click="cancelAppointment(appointment.$id)"
@@ -53,8 +52,8 @@ const fetchAppointments = async () => {
     if (currentUser) {
       // Asumiendo que las citas tienen un campo 'patientId'
       const fetchedAppointments = await listAppointments([
-        Query.equal('patientId', currentUser.$id),
-        Query.orderDesc('date')
+        Query.equal('patient_id', currentUser.$id),
+        Query.orderDesc('datetime')
       ]);
       appointments.value = fetchedAppointments;
     }

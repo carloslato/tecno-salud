@@ -71,8 +71,26 @@ onMounted(async () => {
 const handleLogin = async () => {
   try {
     await login(email.value, password.value);
+    const user = await getCurrentUser(); // Obtener el usuario con su rol
     alert('Inicio de sesión exitoso.');
-    router.push('/'); // Redirigir a la página principal o dashboard
+
+    if (user && user.role) {
+      switch (user.role) {
+        case 'patient':
+          router.push('/appointments');
+          break;
+        case 'doctor':
+          router.push('/doctor');
+          break;
+        case 'admin':
+          router.push('/admin');
+          break;
+        default:
+          router.push('/'); // Redirección por defecto si el rol no está definido
+      }
+    } else {
+      router.push('/'); // Redirigir a la página principal si no se puede determinar el rol
+    }
   } catch (error) {
     alert(`Error al iniciar sesión: ${error.message}`);
   }

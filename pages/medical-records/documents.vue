@@ -9,9 +9,9 @@
             class="bg-white shadow overflow-hidden rounded-md px-6 py-4">
           <div class="flex justify-between items-center">
             <div>
-              <p class="text-lg font-medium text-gray-900">Nombre: {{ doc.name }}</p>
+              <p class="text-lg font-medium text-gray-900">Nombre: {{ doc.title }}</p>
               <p class="text-sm text-gray-500">Tipo: {{ doc.type }}</p>
-              <p class="text-sm text-gray-500">Fecha: {{ new Date(doc.date).toLocaleDateString() }}</p>
+              <p class="text-sm text-gray-500">Fecha: {{ new Date(doc.uploaded_at).toLocaleDateString() }}</p>
             </div>
             <a :href="doc.url" target="_blank"
                class="ml-4 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
@@ -53,8 +53,8 @@ const fetchDocuments = async () => {
     if (currentUser) {
       // Asumiendo que los documentos tienen un campo 'patientId'
       const fetchedDocuments = await listDocuments([
-        Query.equal('patientId', currentUser.$id),
-        Query.orderDesc('date')
+        Query.equal('patient_id', currentUser.$id),
+        Query.orderDesc('uploaded_at')
       ]);
       documents.value = fetchedDocuments;
     }

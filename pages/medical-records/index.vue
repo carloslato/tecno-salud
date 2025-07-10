@@ -9,10 +9,10 @@
             class="bg-white shadow overflow-hidden rounded-md px-6 py-4">
           <div class="flex justify-between items-center">
             <div>
-              <p class="text-lg font-medium text-gray-900">Fecha: {{ new Date(record.date).toLocaleDateString() }}</p>
+              <p class="text-lg font-medium text-gray-900">Fecha: {{ new Date(record.created_at).toLocaleDateString() }}</p>
               <p class="text-sm text-gray-500">Diagnóstico: {{ record.diagnosis }}</p>
               <p class="text-sm text-gray-500">Tratamiento: {{ record.treatment }}</p>
-              <p class="text-sm text-gray-500">Doctor: {{ record.doctorName }}</p>
+              <p class="text-sm text-gray-500">Doctor ID: {{ record.doctor_id }}</p>
             </div>
           </div>
         </li>
@@ -50,8 +50,8 @@ const fetchMedicalRecords = async () => {
     if (currentUser) {
       // Asumiendo que las historias clínicas tienen un campo 'patientId'
       const fetchedRecords = await listMedicalRecords([
-        Query.equal('patientId', currentUser.$id),
-        Query.orderDesc('date')
+        Query.equal('patient_id', currentUser.$id),
+        Query.orderDesc('created_at')
       ]);
       medicalRecords.value = fetchedRecords;
     }

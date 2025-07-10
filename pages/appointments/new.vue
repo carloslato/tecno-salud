@@ -72,12 +72,11 @@ const handleScheduleAppointment = async () => {
     }
 
     const appointmentData = {
-      date: date.value,
-      time: time.value,
-      doctorName: doctorName.value,
+      datetime: `${date.value}T${time.value}:00.000Z`, // Combinar fecha y hora en formato ISO
+      doctor_id: doctorName.value, // Asumiendo que doctorName ahora es doctor_id
       patient_id: currentUser.$id,
-      patientName: currentUser.name || currentUser.email, // Usar el nombre del usuario o email
-      status: 'scheduled', // Estado inicial de la cita
+      // patientName: currentUser.full_name || currentUser.email, // Este campo no existe en el esquema de Appwrite
+      status: 'pending', // Estado inicial de la cita, según el esquema
     };
     await createAppointment(appointmentData);
     alert('Cita agendada exitosamente.');
