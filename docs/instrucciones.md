@@ -86,3 +86,4 @@ Empieza por la autenticación y luego implementa las pantallas una por una. Usa 
 
 ---
 
+Si necesitas mas contexto, hay una carpeta llamada prototype con capturas de pantalla de los prototipos de cada vista.
